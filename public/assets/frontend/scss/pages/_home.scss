@@ -1,0 +1,193 @@
+
+.left-content {
+  .widget-facebook {
+    .d-flex {
+      margin: 5px;
+      border: 1px solid #ddd;
+      padding: 5px;
+
+      .left {
+        width: 50px;
+        height: 50px;
+      }
+
+      .right {
+        margin-left: 10px;
+
+        .page-name {
+          font-size: 16px;
+          color: $color-main;
+        }
+
+        .page-like-count {
+          color: $color-black;
+          font-size: 12px;
+
+          a {
+            border: 1px solid $color-gray;
+            padding: 0 5px;
+            margin-right: 10px;
+
+            i {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .widget-follow {
+    .text {
+      display: flex;
+      justify-content: space-around;
+
+      a {
+        font-size: 50px;
+        transition: all .5s;
+        color: $color-main;
+
+        &:hover {
+          color: $color-main-opacity;
+        }
+      }
+    }
+  }
+
+}
+
+.right-content {
+  .main-slider {
+    border: 10px solid $color-main;
+    border-radius: 10px;
+
+    .carousel-inner {
+      .carousel-item {
+        height: 400px;
+
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    .carousel-indicators [data-bs-target] {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+    }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      background-color: $color-main;
+      padding: 20px;
+      background-size: 20px;
+      border-radius: 5px;
+    }
+  }
+
+  .marquee-wrapper {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    padding: 10px 10px 4px 10px;
+    box-shadow: 0 0px 10px rgb(0 0 0 / 15%);
+
+    .marquee-block {
+      height: 180px;
+      width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+      position: relative;
+
+      .marquee-inner {
+        &.to-left {
+          animation: marqueeLeft 25s linear infinite;
+        }
+
+        display: block;
+        width: 200%;
+        position: absolute;
+
+        span {
+          float: left;
+
+          .marquee-item {
+            background: $color-gray;
+            margin-right: 5px;
+            border-radius: 5px;
+            height: 170px;
+            border: 1px solid $color-main-opacity;
+            width: 230px;
+            display: inline-block;
+            float: left;
+            transition: all .2s ease-out;
+            text-align: center;
+
+            img {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .brand-wrapper {
+    .brand-item {
+      border: 1px solid $color-main;
+      padding: 10px 10px;
+      border-radius: 5px;
+      background: $color-white;
+      margin: 0 5px;
+    }
+  }
+
+}
+
+@keyframes marqueeLeft {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.embed-responsive-item {
+  height: 290px;
+}
+
+.right-content {
+  .main-slider {
+    .carousel-inner {
+      .carousel-item {
+        height: 300px;
+      }
+    }
+  }
+
+  .marquee-wrapper {
+    .marquee-block {
+      height: 125px;
+
+      .marquee-inner span {
+        .marquee-item {
+          height: 120px;
+          width: 180px;
+        }
+      }
+    }
+  }
+
+}
+
+
+/*@include media-breakpoint-down(xl) {
+  body {
+    background: red;
+  }
+
+}*/

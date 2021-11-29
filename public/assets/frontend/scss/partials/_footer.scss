@@ -1,0 +1,38 @@
+.footer-content {
+  margin-bottom: 20px;
+  .row {
+    margin-top: 40px;
+    padding: 40px 0 15px;
+    border-radius: 10px;
+    background: $color-main;
+
+    .footer-menu {
+
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 15px;
+
+          i.fas.fa-map-marker-alt.me-2 {
+            height: 40px;
+            line-height: 25px;
+            float: left;
+          }
+
+          a {
+            color: $color-white;
+            padding: 0 10px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

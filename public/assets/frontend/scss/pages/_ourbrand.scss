@@ -1,0 +1,85 @@
+
+.our-brands-section {
+  margin-top: 20px;
+
+  .product-item {
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 0 0 15px #b3b3b3;
+    transition: all .5s;
+
+    &:hover {
+      box-shadow: 0 0 5px $color-main-opacity;
+    }
+
+    h4 {
+      font-size: 15px;
+      color: $color-black;
+      margin-top: 20px;
+    }
+  }
+
+}
+
+
+.our-brands-product {
+  .accordion-item {
+    border: none;
+    margin-bottom: 1px;
+    background: transparent;
+
+    &:last-of-type {
+      .accordion-button {
+        &.collapsed {
+          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+      }
+    }
+
+    .accordion-button {
+      background: $color-main;
+      padding: 8px 15px;
+      font-size: 14px;
+      color: $color-white;
+      border-radius: 10px;
+      margin-bottom: 0;
+
+      &:after {
+        background-image: url("../images/down.svg");
+      }
+
+      &:focus {
+        border-color: transparent;
+        box-shadow: none;
+      }
+    }
+
+
+    .accordion-body {
+      padding: 0;
+
+      .brand-name-group {
+        .brand-name {
+          display: block;
+          background: $color-white;
+          padding: 8px 15px;
+          margin-bottom: 1px;
+          border-radius: 10px;
+          color: $color-main;
+          font-size: 14px;
+          border: 1px solid $color-gray;
+          transition: all .5s;
+
+          &:hover {
+            background: $color-gray;
+          }
+        }
+
+      }
+    }
+  }
+}

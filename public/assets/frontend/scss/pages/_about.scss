@@ -1,0 +1,62 @@
+.left-content {
+  .side-menu-section {
+    .menu-link {
+      background: $color-main;
+      margin-bottom: 3px;
+      height: 40px;
+      border-radius: 10px;
+      padding: 0 15px;
+      line-height: 40px;
+      color: #fff;
+      text-transform: capitalize;
+
+      &.active {
+        background: $color-gray;
+        color: $color-main;
+      }
+    }
+  }
+}
+
+.right-content {
+  .profile-image {
+    border: 15px solid $color-main;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+  .profile-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: $color-black;
+    line-height: 26px;
+  }
+  p {
+    color: $color-black;
+
+    .profile-link {
+      text-decoration: underline;
+    }
+  }
+  .quality-content{
+    margin-bottom: 40px;
+  }
+  .concern-company{
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 20px;
+    ul{
+      margin: 20px 0 0;
+      li{
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .sister-concerns-name{
+    font-size: 16px;
+    margin: 10px 0 10px;
+  }
+}
