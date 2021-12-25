@@ -403,7 +403,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .our-brands-section .product-item h4 {
   font-size: 15px;
   color: #000000;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .our-brands-product .accordion-item {

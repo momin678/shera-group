@@ -26,18 +26,13 @@
                                 <h4  class="d-flex align-items-center"><span><i class="fas fa-sort-down"></i></span>Facebook Pages</h4>
                             </div>
                             <div class="text">
-                                <div class="d-flex">
-                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fradhuni.spices%2F&tabs&width=245&height=80&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1554271208298627" width="245" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                                </div>
-                                <div class="d-flex">
-                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fruchirealpickle%2F&tabs&width=245&height=80&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1554271208298627" width="245" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                                </div>
-                                <div class="d-flex">
-                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fchopstick.noodles%2F&tabs&width=245&height=80&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1554271208298627" width="245" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                                </div>
-                                <div class="d-flex">
-                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faaramjuice%2F&tabs&width=245&height=80&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1554271208298627" width="240" height="75" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                                </div>
+                                @if ((get_setting('facebook_pages') != null))
+                                    @foreach(json_decode(get_setting('facebook_pages')) as $facebook_page)
+                                        <div class="d-flex">
+                                            <iframe src="{{$facebook_page}}" width="245" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <!--widget Follow -->
@@ -66,7 +61,7 @@
                                 <div class="carousel-inner">
                                     @foreach($sliders as $key => $slider)
                                         <div class="carousel-item {{ $key == 0 ? ' active' : '' }} " data-bs-interval="2000">
-                                            <a href="our-product.html">
+                                            <a href="#">
                                                 <img src="{{asset('images/home_slider')}}/{{$slider->slider_image}}" class="d-block w-100" alt="...">
                                             </a>
                                         </div>
@@ -88,41 +83,26 @@
                             <div class="marquee-block">
                                 <div class="marquee-inner to-left">
                                     <span>
-                                        <a href="our-brands-product.html" class="marquee-item">
-                                            <img src="{{asset('assets/frontend/images/slider/ruchi_kashon.png ')}}" alt="">
-                                        </a>
-                                        <a href="our-brands-product.html" class="marquee-item">
-                                            <img src="{{asset('assets/frontend/images/slider/ruchi_kashon.png ')}}" alt="">
-                                        </a>
-                                        <a href="our-brands-product.html" class="marquee-item">
-                                            <img src="{{asset('assets/frontend/images/slider/ruchi_kashon.png ')}}" alt="">
-                                        </a>
-                                        <a href="our-brands-product.html" class="marquee-item">
-                                            <img src="{{asset('assets/frontend/images/slider/ruchi_kashon.png ')}}" alt="">
-                                        </a>
-                                        <a href="our-brands-product.html" class="marquee-item">
-                                            <img src="{{asset('assets/frontend/images/slider/ruchi_kashon.png ')}}" alt="">
-                                        </a>
+                                        @if ((get_setting('top10_product') != null))
+                                            @foreach(json_decode(get_setting('top10_product')) as $product)
+                                            @php
+                                                $product = \App\Models\Product::find($product);
+                                            @endphp
+                                            <a href="{{route('product.show', $product->id)}}" class="marquee-item">
+                                                <img src="{{asset('images/product')}}/{{$product->photos}}" alt="">
+                                            </a>
+                                            @endforeach
+                                        @endif
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="brand-wrapper d-flex justify-content-around mt-md-4">
-                            <a href="our-brands-product.html" class="brand-item">
-                                <img class="img-fluid" src="{{asset('assets/frontend/images/home/product-1.jpg')}}" alt="">
-                            </a>
-                            <a href="our-brands-product.html" class="brand-item">
-                                <img class="img-fluid" src="{{asset('assets/frontend/images/home/product-2.jpg')}}" alt="">
-                            </a>
-                            <a href="our-brands-product.html" class="brand-item">
-                                <img class="img-fluid" src="{{asset('assets/frontend/images/home/product-3.jpg')}}" alt="">
-                            </a>
-                            <a href="our-brands-product.html" class="brand-item">
-                                <img class="img-fluid" src="{{asset('assets/frontend/images/home/chopstick_logo.jpg')}}" alt="">
-                            </a>
-                            <a href="our-brands-product.html" class="brand-item">
-                                <img class="img-fluid" src="{{asset('assets/frontend/images/home/aaram.png ')}}" alt="">
-                            </a>
+                            @foreach ($categories as $category)
+                                <a href="{{route('sub-category-list', $category->id)}}" class="brand-item">
+                                    <img class="img-fluid" src="{{asset('images/category')}}/{{$category->banner}}" alt="">
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -139,10 +119,8 @@
                     <div class="modal-body">
                         <div class="embed-responsive embed-responsive-16by9">
                             @if(json_decode(get_setting('about_video')))
-                                <!--<img height="150px" src="{{asset('images/logo')}}/{{json_decode(get_setting('about_video'))}}"/>-->
                                 <iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/{{ (json_decode(get_setting('about_video')))}}" allowfullscreen></iframe>
                               @endif
-                            <!--<iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/1WRaxZrtdSs&list=RDMMHrYleYeY_8U&index=4" allowfullscreen></iframe>-->
                         </div>
                     </div>
                 </div>

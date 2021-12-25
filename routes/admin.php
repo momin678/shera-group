@@ -49,8 +49,8 @@ Route::group(['prefix' =>'admin/staffs', 'middleware'=> ['isAdmin','auth', 'Prev
 // Product, category, brand, attribute route
 Route::group(['prefix'=>'admin/products', 'middleware'=>['isAdmin','auth', 'PreventBackHistory']], function(){
   Route::resource('product', 'ProductController', ['names' => 'product']);
-  Route::get('/admin/products', 'ProductController@admin_products')->name('admin.products');
-  Route::post('/sku_combination/products', 'ProductController@sku_combination')->name('sku_combination.products');
+  Route::post('/product/featured', 'ProductController@updateActive')->name('admin.product.active');
+  Route::delete('/admin/products/-delete', 'ProductController@product_delete')->name('admin.product-delete');
   Route::resource('category', 'CategoryController', ['names' => 'category']);
   Route::delete('cat_delete', "CategoryController@cat_delete")->name('admin.category-delete');
   Route::post('/category/featured', 'CategoryController@updateActive')->name('admin.category.active');

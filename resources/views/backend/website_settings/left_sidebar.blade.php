@@ -50,6 +50,38 @@
 	<div class="col-md-10 mx-auto">
 		<div class="card">
 			<div class="card-header">
+				<h6 class="mb-0">Facebook Pages Link</h6>
+			</div>
+			<div class="card-body">
+				<form method="post" action="{{route('business_settings.update')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+						<input type="hidden" name="types[]" value="facebook_pages">
+						@if ((get_setting('facebook_pages') != null))
+							@foreach(json_decode(get_setting('facebook_pages')) as $facebook_page)
+								<div class="form-group hdtuto control-group lst increment col-md-10" >
+									<input type="text" name="facebook_pages[]" class="myfrm form-control" placeholder="Facebook page link" value="{{$facebook_page}}">
+								</div>
+							@endforeach
+						@endif
+                        <div class="form-group hdtuto control-group lst increment col-md-10" >
+                            <input type="text" name="facebook_pages[]" class="myfrm form-control" placeholder="Facebook page link">
+                        </div>                        
+                    	<div id="newInput"></div>
+                    </div>
+                    <div class="form-group-btn"> 
+                        <button class="btn btn-light float-right mt-2" type="button" id="addRow">Add</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10 mx-auto">
+		<div class="card">
+			<div class="card-header">
 				<h6 class="mb-0">Shera-group Follow-us</h6>
 			</div>
 			<div class="card-body">
@@ -84,6 +116,7 @@
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @section('js')
@@ -104,4 +137,18 @@
           }
         }
     </script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var html = '';
+			html += '<div class="clone hide removeInputRow" id="removeInputRow">'
+				html += '<div class="form-group hdtuto control-group lst increment col-md-10" >'
+				html +=     '<input type="text" name="facebook_pages[]" class="myfrm form-control" placeholder="Facebook page link">'
+				html += '</div>'
+			html += '</div>'
+			$("#addRow").click(function(){
+				var lsthmtl = $(html).html();
+				$("#newInput").after(lsthmtl);
+			});
+		});
+	</script>
 @endsection

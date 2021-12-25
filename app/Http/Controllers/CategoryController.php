@@ -114,7 +114,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // dd($request);
         $category_info = Category::find($category->id);
         $category_info->name = $request->name;
         if($request->hasFile('banner')){
@@ -150,7 +149,7 @@ class CategoryController extends Controller
             }
         }
         if($request->parent_id != "0"){
-            $category->parent_id = $request->parent_id;
+            $category_info->parent_id = $request->parent_id;
             $category_id = Category::find($request->parent_id);
             $category_info->level = $category_id->level +1;
         }
@@ -170,7 +169,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category, $id)
     {
-        // dd($category);
         Category::find($id)->delete();
         return redirect()->route('category.index');
     }
@@ -194,7 +192,6 @@ class CategoryController extends Controller
             }
         }
         CategoryBenefit::delete_category($category_info->id);
-        // dd($category_info);
         flash('Category has been delete successfully')->success();
         return redirect()->route('category.index');
     }
@@ -205,5 +202,11 @@ class CategoryController extends Controller
             return 1;
         }
         return 0;
+    }
+    public function category_list($id){
+        $categories = Category::where('level', 0)->orderBy('id', 'DESC')->take(5)->get();
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
+        $sub_category = Category::where('parent_id', $id)->get();
+        return view('frontend.our-brands', compact('sub_category', 'categories', 'products'));
     }
 }

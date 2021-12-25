@@ -1,5 +1,7 @@
 @extends('backend.layouts.app')
-
+@section('css')
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+@endsection
 @section('content')
 
 <div class="aiz-titlebar text-left mt-2 mb-3">
@@ -49,7 +51,7 @@
                                 <td>
                                     <label class="mb-0">
                                         <input type="checkbox" value="{{$brand->id}}" onchange="update_active(this)" name="my-checkbox" {{$brand->status == 1 ? 'checked' : 'unchecked' }} data-bootstrap-switch data-off-color="danger" data-on-color="success">
-                                      </label>
+                                    </label>
                                 </td>
 		                        <td class="text-right">
 		                            <a class="btn btn-info btn-sm" href="{{route('brand.edit',$brand->id)}}">
@@ -110,7 +112,6 @@
 		</div>
 	</div>
 </div>
-
 <div  id="deleteModal" class="modal fade">
     <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content">
@@ -135,6 +136,7 @@
 @section('js')
 <script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js' ) }}"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <script>  
 function update_active(el){
     if(el.checked){
@@ -147,19 +149,16 @@ function update_active(el){
       {_token:'{{ csrf_token() }}', id:el.value, status:status},
       function(data){
         if(data == 1){
-          SRM.plugins.notification('success', 'Active brand updated successfully');
+          SRM.plugins.notification('success', 'Brand updated successfully');
         }
         else{
           SRM.plugins.notification('danger', 'Something went wrong');
         }
       });
-  }
-  $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    })
-    $(function () {
-        bsCustomFileInput.init();
-    });
+  	}
+  	$("input[data-bootstrap-switch]").each(function(){
+		$(this).bootstrapSwitch('state', $(this).prop('checked'));
+	});
     $(document).on('click','.delete',function(){
          let id = $(this).attr('data-id');
          $('#id').val(id);

@@ -1,4 +1,65 @@
 @extends('backend.layouts.app')
+<style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    </style>
 @section('content')
 <div class="text-left mt-2 mb-3">
     <div class="row align-items-center">
@@ -62,9 +123,13 @@
                           @endif
                       </td>
                       <td>
-                          <label class="mb-0">
+                          {{-- <label class="mb-0 ">
                             <input type="checkbox" value="{{$category->id}}" onchange="update_active(this)" name="my-checkbox" {{$category->status == 1 ? 'checked' : 'unchecked' }} data-bootstrap-switch data-off-color="danger" data-on-color="success">
-                          </label>
+                          </label> --}}
+                          <label class="switch">
+                            <input type="checkbox" value="{{$category->id}}" onchange="update_active(this)" name="my-checkbox" {{$category->status == 1 ? 'checked' : '' }}>
+                            <span class="slider round"></span>
+                          </label>                          
                       </td>
                       <td class="text-right">
                         <a class="btn btn-info btn-sm" href="{{route('category.edit',$category->id)}}">

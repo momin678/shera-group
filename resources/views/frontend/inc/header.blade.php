@@ -21,13 +21,13 @@
                                 <ul class="navbar-nav me-auto">
                                     <li class="nav-item {{request()->is('/') ? 'active' : '' }}"><a class="nav-link" href="{{url('/')}}">Home </a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="our-brands.html">
+                                        <a class="nav-link dropdown-toggle" href="#">
                                             Our Brands
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="our-brands-product.html">Radhuni</a></li>
-                                            <li><a class="dropdown-item" href="our-brands-product.html">Radhuni</a></li>
-                                            <li><a class="dropdown-item" href="our-brands-product.html">Radhuni</a></li>
+                                            @foreach (\App\Models\Category::where('level', 0)->get() as $category)
+                                                <li><a class="dropdown-item" href="{{route('sub-category-list',$category->id)}}">{{ $category->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li class="nav-item {{request()->is('global-presence') ? 'active' : '' }}"><a class="nav-link" href="{{route('global-presence')}}"> Global Presence </a></li>

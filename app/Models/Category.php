@@ -9,4 +9,8 @@ class Category extends Model
 {
     use HasFactory;
     protected $table = 'categories';
+    public function category()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

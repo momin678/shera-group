@@ -48,37 +48,37 @@ class BusinessSettingsController extends Controller
     public function update(Request $request)
     {
         foreach ($request->types as $key => $type) {
-            if($type == 'site_name'){
-                $this->overWriteEnvFile('APP_NAME', $request[$type]);
-            }
-            if($type == 'timezone'){
-                $this->overWriteEnvFile('APP_TIMEZONE', $request[$type]);
-            }
-            else {
-                $business_settings = BusinessSettings::where('type', $type)->first();
-                if($business_settings!=null){
-                    if(gettype($request[$type]) == 'array'){
-                        $business_settings->value = json_encode($request[$type]);
-                    }
-                    else {
-                        $business_settings->value = json_encode($request[$type]);
-                    }
-                    $business_settings->save();
+                if($type == 'site_name'){
+                    $this->overWriteEnvFile('APP_NAME', $request[$type]);
                 }
-                else{
-                    $business_settings = new BusinessSettings;
-                    $business_settings->type = $type;
-                    if(gettype($request[$type]) == 'array'){
-                        $business_settings->value = json_encode($request[$type]);
+                if($type == 'timezone'){
+                    $this->overWriteEnvFile('APP_TIMEZONE', $request[$type]);
+                }
+                else {
+                    $business_settings = BusinessSettings::where('type', $type)->first();
+                    if($business_settings!=null){
+                        if(gettype($request[$type]) == 'array'){
+                            $business_settings->value = json_encode($request[$type]);
+                        }
+                        else {
+                            $business_settings->value = $request[$type];
+                        }
+                        $business_settings->save();
                     }
-                    else {
-                        $business_settings->value = json_encode($request[$type]);
+                    else{
+                        $business_settings = new BusinessSettings;
+                        $business_settings->type = $type;
+                        if(gettype($request[$type]) == 'array'){
+                            $business_settings->value = json_encode($request[$type]);
+                        }
+                        else {
+                            $business_settings->value = $request[$type];
+                        }
+                        $business_settings->save();
                     }
-                    $business_settings->save();
                 }
             }
-        }
-        // flash(translate("Settings updated successfully"))->success();
+        flash('Settings updated successfully')->success();
         return back();
     }
     public function sideTopLogo(Request $request){

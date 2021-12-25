@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Brand;
+use App\Models\Category;
 use DB;
 class HomeController extends Controller
 {
@@ -18,7 +20,8 @@ class HomeController extends Controller
     }
     public function home(Request $request){
         $sliders = DB::table('home_slider')->get();
-        return view('frontend.index', compact('sliders'));
+        $categories = Category::where('level', 0)->orderBy('id', 'DESC')->take(5)->get();
+        return view('frontend.index', compact('sliders', 'categories'));
     }
     /**
      * Show the application dashboard.
